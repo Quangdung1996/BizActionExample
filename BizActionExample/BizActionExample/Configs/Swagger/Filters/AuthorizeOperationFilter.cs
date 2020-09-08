@@ -34,7 +34,7 @@ namespace BizActionExample.Configs.Swagger.Filters
 
             operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden" });
             operation.Responses.Add("500", new OpenApiResponse { Description = "Internal Server Error" });
-            operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
+            //operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
 
             //@todo testar novamente
 
@@ -54,24 +54,6 @@ namespace BizActionExample.Configs.Swagger.Filters
                     Schema = new OpenApiSchema { Type = "string" },
                 });
             }
-            operation.Security = new List<OpenApiSecurityRequirement>
-                {
-                    new OpenApiSecurityRequirement()
-                        {
-                             {
-                                new OpenApiSecurityScheme
-                                {
-                                    Description = "Adds token to header",
-                                    Name = "Authorization",
-                                    Type = SecuritySchemeType.Http,
-                                    In = ParameterLocation.Header,
-                                    Scheme = "bearer",
-                                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
-                                },
-                                new List<string>()
-                            }
-                    }
-                };
 
             if (requiredScopes.Any())
             {
@@ -83,6 +65,7 @@ namespace BizActionExample.Configs.Swagger.Filters
                         In = ParameterLocation.Header,
                         Description = "API Gateway access token",
                         Required = true,
+                        Schema = new OpenApiSchema { Type = "string" },
                     });
                 }
             }
