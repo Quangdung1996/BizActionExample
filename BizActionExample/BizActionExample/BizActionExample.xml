@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BizActionExample</name>
+    </assembly>
+    <members>
+        <member name="M:BizActionExample.Configs.Swagger.Attributes.AuthorizeHeaderRequired.#ctor(System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="useApiGateway">Se true (padrão) vai exigir header "x-api-key"</param>
+        </member>
+        <member name="T:BizActionExample.Configs.Swagger.Attributes.NonBodyParameterAttribute">
+            <summary>
+            NonBodyParameter customizado.
+            Pode ser usado para solicitar headers customizados, por exemplo: exigir que uma informação específica seja enviada nos headers de cada requisição.
+            </summary>
+        </member>
+        <member name="M:BizActionExample.Configs.Swagger.Attributes.NonBodyParameterAttribute.#ctor(System.String,System.String,System.Boolean,Microsoft.OpenApi.Models.ParameterLocation)">
+            <summary>
+            Cria um NonBodyParameter customizado
+            </summary>
+            <param name="name">Nome do parameter, ex: x-api-key</param>
+            <param name="description">Descrição do parameter ex: API Gateway access token</param>
+            <param name="required">Se true o parâmetro é obrigatório</param>
+            <param name="parameterType">Local do parametro, ex: header</param>
+        </member>
+        <member name="M:BizActionExample.Configs.Swagger.Attributes.NonBodyParameterAttribute.#ctor(System.Type,System.String,System.String,System.Boolean,Microsoft.OpenApi.Models.ParameterLocation)">
+            <summary>
+            Cria um NonBodyParameter customizado
+            </summary>
+            <param name="resourceType">Tipo de recurso de idioma</param>
+            <param name="nameResourceName">Identificador do recurso de idioma para o name do parameter.</param>
+            <param name="descriptionResourceName">Identificador do recurso de idioma para o description do parameter.</param>
+            <param name="required">Se true o parâmetro é obrigatório</param>
+            <param name="parameterType">Local do parametro, ex: header</param>
+        </member>
+        <member name="P:BizActionExample.Controllers.BaseController.ApplicationId">
+            <summary>
+            Token de acesso enviado no Header da requisição.
+            </summary>
+        </member>
+        <member name="P:BizActionExample.Controllers.BaseController.AcceptLanguage">
+            <summary>
+            Identificador da cultura desejada para a resposta de requisição da API.
+            </summary>
+        </member>
+        <member name="P:BizActionExample.Controllers.BaseController.DeviceToken">
+            <summary>
+            DeviceToken para envio de push enviado no Header da requisição.
+            </summary>
+        </member>
+    </members>
+</doc>
