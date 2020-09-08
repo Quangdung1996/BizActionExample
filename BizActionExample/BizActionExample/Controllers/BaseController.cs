@@ -4,12 +4,12 @@ using System.Net;
 
 namespace BizActionExample.Controllers
 {
-    //// [Authorize]
-    //[ApiController]
-    //[Produces("application/json")]
+    //  [Authorize]
+    [ApiController]
+    [Produces("application/json")]
 
     ////[Route("[controller]")]
-    //[Route("v{version:apiVersion}/[controller]")]
+
 
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]

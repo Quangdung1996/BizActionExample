@@ -2,18 +2,19 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BizActionExample.Controllers.V1
+namespace BizActionExample.Controllers.v1
 {
-    [ApiVersion("1")]
+    [ApiVersion("1.0", Deprecated = true)]
     [AuthorizeHeaderRequired]
-    [Produces("application/json")]
-    [Route("BizActionExample/v1/values")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+
     public class ValuesController : BaseController
     {
         [HttpGet]
         //[NonBodyParameter("DeviceToken", "Device token do dispositivo", true)]
         //[NonBodyParameter("OSSmartphone", "Sistema operacional do aparelho", true)]
         [AllowAnonymous]
+        [MapToApiVersion("1.0")]
         public string Get()
         {
             return "Test";

@@ -1,10 +1,13 @@
 using BizActionExample.Configs.Swagger;
 using BizActionExample.Configs.Swagger.Filters;
+using BizActionExample.Controllers.v1;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace BizActionExample
@@ -14,6 +17,11 @@ namespace BizActionExample
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            SwaggerHelper.SetDescricaoBaseApi(new OpenApiInfo()
+            {
+                Title = "BizActionExample",
+                Description = "API BizActionExample"
+            });
         }
 
         public IConfiguration Configuration { get; }
@@ -22,10 +30,15 @@ namespace BizActionExample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddApiVersioning();
+            services.AddApiVersioning(o =>
+            {
+                o.AssumeDefaultVersionWhenUnspecified = true;
+                o.DefaultApiVersion = new ApiVersion(1, 0);
+            });
 
             SwaggerHelper.ConfigureSwaggerGenOptions = swaggerGenOptions =>
             {
+
                 swaggerGenOptions.OperationFilter<SwaggerParameterOperationFilter>();
                 swaggerGenOptions.OperationFilter<ComplexRequestObjectOperationFilter>();
                 swaggerGenOptions.OperationFilter<NonBodyParameterFilter>();
@@ -33,15 +46,8 @@ namespace BizActionExample
                 swaggerGenOptions.OperationFilter<AddResponseHeadersFilter>();
                 swaggerGenOptions.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
 
-                //Adding filter classes to Swagger for AWS
-                //swaggerGenOptions.OperationFilter<Tools.Swagger.AspNetCore.Filters.ApiGateway.AwsApiGatewaySecurity>();
-                //swaggerGenOptions.OperationFilter<Tools.Swagger.AspNetCore.Filters.ApiGateway.AwsApiGatewayIntegrationFilter>();
-                //swaggerGenOptions.DocumentFilter<Tools.Swagger.AspNetCore.Filters.ApiGateway.AwsDocumentFilter>();
-
-                //Adding parameter x-api-key to all methods, required for import for AWS
-                //swaggerGenOptions.AddSecurityDefinition("api_key",
-                //    new Swashbuckle.AspNetCore.Swagger.ApiKeyScheme() { Type = "apiKey", Name = "x-api-key", In = "header" }
-                //);
+                swaggerGenOptions.OperationFilter<RemoveVersionParameterFilter>();
+                swaggerGenOptions.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
             };
             services.AddSwaggerGen(SwaggerHelper.ConfigureSwaggerGen);
         }

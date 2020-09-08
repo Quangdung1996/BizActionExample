@@ -46,7 +46,6 @@ namespace BizActionExample.Configs.Swagger
                     .DeclaringType
                     .GetCustomAttribute<ApiVersionAttribute>()
                     .Versions;
-
                 return versions.Any(v => $"v{v.ToString()}" == docName);
             });
         }
