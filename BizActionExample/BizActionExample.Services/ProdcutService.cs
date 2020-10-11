@@ -2,7 +2,7 @@
 
 namespace BizActionExample.Services
 {
-    public class Class1
+    public class ProdcutService:IProductAction
     {
     }
 }
