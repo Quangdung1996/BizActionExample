@@ -21,7 +21,7 @@ namespace BizActionExample.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> GetAllProduct([FromServices] IActionServiceAsync<IProductAction> action)
         {
-            if(await action.RunBizActionAsync<CreatePaymentView>(default) is null)
+            if(await action.RunBizActionAsync<CreatePaymentView>(new CreatePaymentModel()) is null)
             {
                 return Ok("result");
             }

@@ -1,16 +1,16 @@
-﻿using GenericBizRunner.PublicButHidden;
+﻿using GenericBizRunner.Configuration.Internal;
+using GenericBizRunner.PublicButHidden;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace GenericBizRunner.Configuration
 {
     /// <summary>
-    /// This contains the code to register the GenericBizRunner library and also find and GenericBizRunner DTO and 
+    /// This contains the code to register the GenericBizRunner library and also find and GenericBizRunner DTO and
     /// </summary>
     public static class NetCoreBizRunnerDi
     {

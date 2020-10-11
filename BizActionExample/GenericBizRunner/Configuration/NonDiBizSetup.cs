@@ -1,4 +1,5 @@
-﻿using GenericBizRunner.PublicButHidden;
+﻿using GenericBizRunner.Configuration.Internal;
+using GenericBizRunner.PublicButHidden;
 using System;
 using System.Collections.Generic;
 using System.Text;

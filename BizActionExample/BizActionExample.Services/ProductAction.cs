@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace BizActionExample.Services
 {
-    internal sealed class ProdcutAction : BizActionStatus, IProductAction
+    public sealed class ProductAction : BizActionStatus, IProductAction
     {
-        public ProdcutAction()
+        public ProductAction()
         {
 
         }

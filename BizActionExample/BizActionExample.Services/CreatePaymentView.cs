@@ -1,6 +1,9 @@
-﻿namespace BizActionExample.Services
+﻿using GenericBizRunner;
+
+namespace BizActionExample.Services
 {
-    public class CreatePaymentView
+    public class CreatePaymentView 
     {
+        public string Name { get; set; }
     }
 }
