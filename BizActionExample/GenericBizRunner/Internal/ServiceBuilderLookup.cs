@@ -11,9 +11,9 @@ namespace GenericBizRunner.Internal
                 new Dictionary<Type, ServiceBuilderLookup>()
                 {
                     //{ typeof(IGenericAction<,>), new ServiceBuilderLookup(typeof(ActionServiceInOut<,,>), RequestedInOut.InOut, false)},
-                    //{ typeof(IGenericActionAsync<,>), new ServiceBuilderLookup(typeof(ActionServiceInOutAsync<,,>), RequestedInOut.InOut | RequestedInOut.Async, false)},
+                    { typeof(IGenericActionAsync<,>), new ServiceBuilderLookup(typeof(ActionServiceInOutAsync<,,>), RequestedInOut.InOut | RequestedInOut.Async, false)},
                     //{ typeof(IGenericActionInOnly<>), new ServiceBuilderLookup(typeof(ActionServiceInOnly<,>), RequestedInOut.In, false)},
-                    //{ typeof(IGenericActionInOnlyAsync<>), new ServiceBuilderLookup(typeof(ActionServiceInOnlyAsync<,>), RequestedInOut.In| RequestedInOut.Async, false)},
+                    { typeof(IGenericActionInOnlyAsync<>), new ServiceBuilderLookup(typeof(ActionServiceInOnlyAsync<,>), RequestedInOut.In| RequestedInOut.Async, false)},
                     //{ typeof(IGenericActionOutOnly<>), new ServiceBuilderLookup(typeof(ActionServiceOutOnly<,>), RequestedInOut.Out, false)},
                     //{ typeof(IGenericActionOutOnlyAsync<>), new ServiceBuilderLookup(typeof(ActionServiceOutOnlyAsync<,>), RequestedInOut.Out | RequestedInOut.Async, false)},
                     ////Now the writeDb versions
