@@ -16,4 +16,8 @@
 	<ItemGroup>
 	  <PackageReference Include="QD.Swagger.Extensions" Version="1.0.3" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BizActionExample.Services\BizActionExample.Services.csproj" />
+	</ItemGroup>
 </Project>

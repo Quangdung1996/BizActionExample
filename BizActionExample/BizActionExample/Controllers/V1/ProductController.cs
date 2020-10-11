@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BizActionExample.Services;
+using GenericBizRunner;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,8 +19,12 @@ namespace BizActionExample.Controllers.V1
 
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllProduct()
+        public async Task<IActionResult> GetAllProduct([FromServices] IActionServiceAsync<IProductAction> action)
         {
+            if(await action.RunBizActionAsync<CreatePaymentView>(default) is null)
+            {
+                return Ok("result");
+            }
             return Ok("result");
         }
     }

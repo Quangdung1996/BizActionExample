@@ -10,9 +10,14 @@ namespace GenericBizRunner
     public interface IStatusGeneric
     {
         /// <summary>
-        /// This holds the list of ValidationResult errors. If the collection is empty, then there were no errors
+        /// This is true if there are no errors registered
         /// </summary>
-        IImmutableList<ValidationResult> Errors { get; }
+        bool IsValid { get; }
+
+        /// <summary>
+        /// This holds the list of errors. If the collection is empty, then there were no errors
+        /// </summary>
+        IImmutableList<ErrorGeneric> Errors { get; }
 
         /// <summary>
         /// This is true if any errors have been reistered
@@ -48,7 +53,7 @@ namespace GenericBizRunner
         /// This allows statuses to be combined
         /// </summary>
         /// <param name="status"></param>
-        void CombineErrors(IStatusGeneric status);
+        IStatusGeneric CombineStatuses(IStatusGeneric status);
 
         /// <summary>
         /// This is a simple method to output all the errors as a single string - null if no errors

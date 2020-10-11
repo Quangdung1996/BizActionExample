@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using GenericBizRunner;
 
 namespace BizActionExample.Services
 {
-    public interface IProductAction: IGenericActionInOnlyWriteDbAsync
+    public interface IProductAction : IGenericActionWriteDbAsync<CreatePaymentModel, CreatePaymentView>
     {
-        Task<string> GetAllAsync();
     }
 }

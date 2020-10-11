@@ -1,4 +1,5 @@
-﻿using GenericBizRunner.PublicButHidden;
+﻿using GenericBizRunner.Helpers;
+using GenericBizRunner.PublicButHidden;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 

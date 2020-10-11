@@ -18,7 +18,7 @@ namespace GenericBizRunner.Internal
                     //{ typeof(IGenericActionOutOnlyAsync<>), new ServiceBuilderLookup(typeof(ActionServiceOutOnlyAsync<,>), RequestedInOut.Out | RequestedInOut.Async, false)},
                     ////Now the writeDb versions
                     //{ typeof(IGenericActionWriteDb<,>), new ServiceBuilderLookup(typeof(ActionServiceInOut<,,>), RequestedInOut.InOut, true)},
-                    //{ typeof(IGenericActionWriteDbAsync<,>), new ServiceBuilderLookup(typeof(ActionServiceInOutAsync<,,>), RequestedInOut.InOut | RequestedInOut.Async, true)},
+                    { typeof(IGenericActionWriteDbAsync<,>), new ServiceBuilderLookup(typeof(ActionServiceInOutAsync<,,>), RequestedInOut.InOut | RequestedInOut.Async, true)},
                     //{ typeof(IGenericActionInOnlyWriteDb<>), new ServiceBuilderLookup(typeof(ActionServiceInOnly<,>), RequestedInOut.In, true)},
                     { typeof(IGenericActionInOnlyWriteDbAsync<>), new ServiceBuilderLookup(typeof(ActionServiceInOnlyAsync<,>), RequestedInOut.In| RequestedInOut.Async, true)},
                     //{ typeof(IGenericActionOutOnlyWriteDb<>), new ServiceBuilderLookup(typeof(ActionServiceOutOnly<,>), RequestedInOut.Out, true)},

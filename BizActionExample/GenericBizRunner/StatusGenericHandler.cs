@@ -11,20 +11,30 @@ namespace GenericBizRunner
     /// </summary>
     public class StatusGenericHandler : IStatusGeneric
     {
-        internal const string ConstDefaultMessage = "Success";
+        public StatusGenericHandler(string header = "")
+        {
+            Header = header;
+        }
 
-        private readonly List<ValidationResult> _errors = new List<ValidationResult>();
-        private string _successMessage;
+        internal const string DefaultSuccessMessage = "Success";
+        private readonly List<ErrorGeneric> _errors = new List<ErrorGeneric>();
+        private string _successMessage = DefaultSuccessMessage;
+
+        /// <summary>
+        /// The header provides a prefix to any errors you add. Useful if you want to have a general prefix to all your errors
+        /// e.g. a header if "MyClass" would produce error messages such as "MyClass: This is my error message."
+        /// </summary>
+        public string Header { get; set; }
 
         /// <summary>
         /// This holds the list of ValidationResult errors. If the collection is empty, then there were no errors
         /// </summary>
-        public IImmutableList<ValidationResult> Errors => _errors.ToImmutableList();
+        public IImmutableList<ErrorGeneric> Errors => _errors.ToImmutableList();
 
         /// <summary>
         /// This is true if any errors have been reistered
         /// </summary>
-        public bool HasErrors => _errors.Any();
+        public bool IsValid => !_errors.Any();
 
         /// <summary>
         /// On success this returns the message as set by the business logic, or the default messages set by the BizRunner
@@ -32,9 +42,9 @@ namespace GenericBizRunner
         /// </summary>
         public string Message
         {
-            get => HasErrors
-                ? $"Failed with {_errors.Count} error" + (_errors.Count == 1 ? "" : "s")
-                : _successMessage ?? ConstDefaultMessage;
+            get => IsValid
+                ? _successMessage
+                : $"Failed with {_errors.Count} error" + (_errors.Count == 1 ? "" : "s");
             set => _successMessage = value;
         }
 
@@ -46,8 +56,8 @@ namespace GenericBizRunner
         public IStatusGeneric AddError(string errorMessage, params string[] propertyNames)
         {
             if (errorMessage == null) throw new ArgumentNullException(nameof(errorMessage));
-            _errors.Add(new ValidationResult
-                (errorMessage, propertyNames));
+            if (errorMessage == null) throw new ArgumentNullException(nameof(errorMessage));
+            _errors.Add(new ErrorGeneric(Header, new ValidationResult(errorMessage, propertyNames)));
             return this;
         }
 
@@ -57,7 +67,7 @@ namespace GenericBizRunner
         /// <param name="validationResult"></param>
         public void AddValidationResult(ValidationResult validationResult)
         {
-            _errors.Add(validationResult);
+            _errors.Add(new ErrorGeneric(Header, validationResult));
         }
 
         /// <summary>
@@ -66,18 +76,21 @@ namespace GenericBizRunner
         /// <param name="validationResults"></param>
         public void AddValidationResults(IEnumerable<ValidationResult> validationResults)
         {
-            _errors.AddRange(validationResults);
+            _errors.AddRange(validationResults.Select(x => new ErrorGeneric(Header, x)));
         }
 
-        /// <summary>
-        /// This allows statuses to be combined
-        /// </summary>
-        /// <param name="status"></param>
-        public void CombineErrors(IStatusGeneric status)
+        public IStatusGeneric CombineStatuses(IStatusGeneric status)
         {
-            _errors.AddRange(status.Errors);
-            if (!HasErrors && status.Message != ConstDefaultMessage)
+            if (!status.IsValid)
+            {
+                _errors.AddRange(string.IsNullOrEmpty(Header)
+                    ? status.Errors
+                    : status.Errors.Select(x => new ErrorGeneric(Header, x)));
+            }
+            if (IsValid && status.Message != DefaultSuccessMessage)
                 Message = status.Message;
+
+            return this;
         }
 
         public string GetAllErrors(string seperator = "\n")
@@ -86,5 +99,7 @@ namespace GenericBizRunner
                 ? string.Join(seperator, Errors)
                 : null;
         }
+
+        public bool HasErrors => _errors.Any();
     }
 }
