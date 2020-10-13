@@ -12,7 +12,7 @@ namespace BizActionExample.Services
         }
         public async Task<CreatePaymentView> BizActionAsync(CreatePaymentModel inputData)
         {
-            return default;
+            return new CreatePaymentView { Name="Dung"};
         }
 
    

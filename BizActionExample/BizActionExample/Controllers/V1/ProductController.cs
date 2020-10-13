@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BizActionExample.Services;
+﻿using BizActionExample.Services;
 using GenericBizRunner;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BizActionExample.Controllers.V1
 {
@@ -16,16 +12,12 @@ namespace BizActionExample.Controllers.V1
     {
         public ProductController()
         {
-
         }
+
         [HttpGet]
-        public async Task<IActionResult> GetAllProduct([FromServices] IActionServiceAsync<IProductAction> action)
+        public async Task<IActionResult> GetAllProduct([FromQuery] CreatePaymentModel createPaymentModel, [FromServices] IActionServiceAsync<IProductAction> action)
         {
-            if(await action.RunBizActionAsync<CreatePaymentView>(new CreatePaymentModel()) is null)
-            {
-                return Ok("result");
-            }
-            return Ok("result");
+            return Ok(await action.RunBizActionAsync<CreatePaymentView>(createPaymentModel));
         }
     }
 }

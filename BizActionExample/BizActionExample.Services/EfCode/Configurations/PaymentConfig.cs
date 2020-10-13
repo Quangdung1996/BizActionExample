@@ -8,6 +8,8 @@ namespace BizActionExample.Services.EfCode.Configurations
         public void Configure
             (EntityTypeBuilder<CreatePaymentView> entity)
         {
+            entity.HasNoKey();
+            entity.Property(p => p.Name).HasColumnType("Name");
         }
     }
 }
