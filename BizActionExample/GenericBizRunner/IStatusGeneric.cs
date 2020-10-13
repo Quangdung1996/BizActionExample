@@ -62,5 +62,7 @@ namespace GenericBizRunner
         /// <param name="seperator"></param>
         /// <returns>a single string with all errors seperated by the 'seperator' string</returns>
         string GetAllErrors(string seperator = "\n");
+
+        IStatusGeneric AddErrorCode(string errorCode, string errorMessage);
     }
 }

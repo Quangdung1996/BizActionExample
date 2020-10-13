@@ -100,6 +100,14 @@ namespace GenericBizRunner
                 : null;
         }
 
+        public IStatusGeneric AddErrorCode(string errorCode, string errorMessage)
+        {
+            if (errorMessage == null) throw new ArgumentNullException(nameof(errorMessage));
+            if (errorMessage == null) throw new ArgumentNullException(nameof(errorMessage));
+            _errors.Add(new ErrorGeneric(Header, new ValidationResult(errorMessage)));
+            return this;
+        }
+
         public bool HasErrors => _errors.Any();
     }
 }
