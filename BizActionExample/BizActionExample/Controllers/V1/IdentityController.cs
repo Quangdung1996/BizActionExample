@@ -24,10 +24,10 @@ namespace BizActionExample.Controllers.V1
             return Ok(result);
         }
 
-        [HttpPost("SignIn")]
-        public async Task<IActionResult> SignInAsync([FromBody] SignInMetaModel signMetaModel, [FromServices] IActionServiceAsync<IRegisterUserAction> action))
-        {
+        //[HttpPost("SignIn")]
+        //public async Task<IActionResult> SignInAsync([FromBody] SignInMetaModel signMetaModel, [FromServices] IActionServiceAsync<IRegisterUserAction> action))
+        //{
            
-        }
+        //}
     }
 }

@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BizActionExample.Services", "BizActionExample.Services\BizActionExample.Services.csproj", "{18380BD0-28FD-4B00-AEFF-EBDB87F5ADE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizActionExample.Infa", "BizActionExample.Infa\BizActionExample.Infa.csproj", "{95B7F3C6-84F4-4C40-B502-5EADC3DFF856}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BizActionExample.Infa", "BizActionExample.Infa\BizActionExample.Infa.csproj", "{95B7F3C6-84F4-4C40-B502-5EADC3DFF856}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6236538A-32DD-488A-804C-220172BB181E}"
 EndProject
